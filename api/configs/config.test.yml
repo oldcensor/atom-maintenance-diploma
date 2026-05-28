@@ -1,0 +1,33 @@
+server:
+  host: "127.0.0.1"
+  port: 8081
+  cors_allowed_origins:
+    - "*"
+
+postgres:
+  url: "postgres://atom_user:secret@localhost:5433/atom_maintenance_test?sslmode=disable"
+  pool_size: 5
+  min_idle_conns: 1
+  dial_timeout: "5s"
+
+redis:
+  url: "redis://localhost:6380/1"
+  pool_size: 5
+  min_idle_conns: 1
+  dial_timeout: "3s"
+
+timeouts:
+  http_request: "10s"
+  db_query: "5s"
+  cache_op: "2s"
+
+jwt:
+  secret: "atom-maintenance-super-secret-key-for-jwt-signing-2024"
+  access_ttl: "15m"
+  refresh_ttl: "720h"
+
+logger:
+  level: "warn"
+  service: "atom-maintenance-api"
+  env: "test"
+  version: "0.0.0"

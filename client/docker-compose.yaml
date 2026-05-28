@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  client:
+    build: .
+    container_name: atom-maintenance-client
+    networks:
+      - atom_network
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.atom-client.rule=Host(`your-domain.ru`)"
+      - "traefik.http.routers.atom-client.entrypoints=websecure"
+      - "traefik.http.routers.atom-client.tls.certresolver=myresolver"
+      - "traefik.http.routers.atom-client-http.rule=Host(`your-domain.ru`)"
+      - "traefik.http.routers.atom-client-http.entrypoints=web"
+      - "traefik.http.routers.atom-client-http.middlewares=https-redirect"
+      - "traefik.http.middlewares.https-redirect.redirectscheme.scheme=https"
+
+networks:
+  atom_network:
+    external: true
+    name: atom-network

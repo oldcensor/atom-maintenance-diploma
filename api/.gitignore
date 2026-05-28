@@ -1,0 +1,14 @@
+bin/
+*.exe
+
+configs/.env
+configs/.env.test
+configs/config.yml
+
+*.test
+*.out
+vendor/
+
+__pycache__/
+venv/
+
